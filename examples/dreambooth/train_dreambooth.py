@@ -301,6 +301,7 @@ class DreamBoothDataset(Dataset):
 
         random.shuffle(self.instance_images_path)
         self.num_instance_images = len(self.instance_images_path)
+        print(f"I: {self.num_instance_images}=")
         self.num_class_images = len(self.class_images_path)
         self._length = max(self.num_class_images, self.num_instance_images)
 
@@ -319,6 +320,7 @@ class DreamBoothDataset(Dataset):
 
     def __getitem__(self, index):
         example = {}
+        print(f"A: {self.num_instance_images}=")
         instance_path, instance_prompt = self.instance_images_path[index % self.num_instance_images]
         instance_image = Image.open(instance_path)
         if not instance_image.mode == "RGB":
